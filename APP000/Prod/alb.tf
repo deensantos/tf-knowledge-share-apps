@@ -12,7 +12,7 @@ resource "aws_lb" "app_alb" {
     )
 }
 
-# Listener
+# Listener 
 resource "aws_lb_listener" "http" {
   load_balancer_arn = aws_lb.app_alb.arn
   port              = "80"

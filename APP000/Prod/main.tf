@@ -25,6 +25,12 @@ data "aws_subnet" "app_subnet_b" {
   }
 }
 
+data "aws_subnet" "db_subnet_a" {
+  tags = {
+    Name = "snet-prod-use1-data-a"
+  }
+}
+
 data "aws_subnet" "public_subnet_a" {
   tags = {
     Name = "snet-prod-use1-public-a"

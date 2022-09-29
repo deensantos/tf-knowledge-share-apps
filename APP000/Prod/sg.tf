@@ -1,7 +1,7 @@
 # ALB SG
 resource "aws_security_group" "alb_sg" {
   name        = "app000-prod-use1-alb"
-  description = "Application traffic"
+  description = "ALB traffic"
   vpc_id      = data.aws_vpc.main_vpc.id
 
   #Ingress
@@ -22,7 +22,7 @@ resource "aws_security_group" "alb_sg" {
   tags = merge(local.tags,{Name = "sg-app000-prod-use1-alb"})
 }
 
-# Application SG
+# APP SG
 resource "aws_security_group" "app_sg" {
   name        = "app000-prod-use1-app"
   description = "Application traffic"
