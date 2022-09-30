@@ -1,8 +1,10 @@
 # Terraform Hands on Training
 
+Ideally this hands on training must be supervisioned by an engineer that has a good understading of terraform, however, you can try completing the Objectives by yourself. 
+
 | **Pre-Requisites:** 
 - An AWS lab setup and an account with admin access. Initial Infra TF Code - [Setup Infrastructure ](https://github.com/deensantos/tf-knowledge-share-infra)
-
+- Backend configuration must be updated
 ------------
 
 
