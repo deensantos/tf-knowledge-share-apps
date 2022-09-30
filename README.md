@@ -56,7 +56,7 @@ Understand and create Modules.
 The customer has informed you that he will be deploying several apps with the same architecture from Session 1, and also requested a few conditions.
 Build a module for the app(session 1) with the following conditions:
 
-### IF env is set to Dev
+**IF** environment is **Dev**
 App instance types must be t2.micro
 DB instance type must be t2.medium
 EBS root size must be 15GB
