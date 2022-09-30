@@ -31,7 +31,7 @@ Write the Terraform code and deploy the requested application infrastructure: [A
 Understand and correct drifts.
 
 **Task**
-Correct all drifts before updating the application resource.
+Add 10GB to the DB ebs volume via Terraform - Correct all drifts before completing your change.
 
 **Steps:**
 
