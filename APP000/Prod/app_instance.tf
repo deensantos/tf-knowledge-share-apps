@@ -4,6 +4,10 @@ resource "aws_instance" "APP001LAP01" {
   instance_type     = "t2.medium"
   availability_zone = "us-east-1a"
   key_name          = "hands-on"
+  
+  lifecycle {
+    ignore_changes = [volume_tags]
+  }
 
   network_interface {
     network_interface_id = aws_network_interface.app_network_interface.id
@@ -37,6 +41,10 @@ resource "aws_instance" "APP001LAP02" {
   instance_type     = "t2.medium"
   availability_zone = "us-east-1b"
   key_name = "hands-on"
+
+  lifecycle {
+    ignore_changes = [volume_tags]
+  }
 
   network_interface {
     network_interface_id = aws_network_interface.app_network_interface_02.id

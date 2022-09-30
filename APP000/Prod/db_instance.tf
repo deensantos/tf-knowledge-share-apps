@@ -5,6 +5,10 @@ resource "aws_instance" "APP001WDP01" {
   availability_zone = "us-east-1a"
   key_name          = "hands-on"
 
+  lifecycle {
+    ignore_changes = [volume_tags]
+  }
+  
   network_interface {
     network_interface_id = aws_network_interface.db_network_interface.id
     device_index         = 0
