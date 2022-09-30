@@ -50,4 +50,28 @@ Add 10GB to the DB ebs volume via Terraform - Correct all drifts before completi
 ### Session 3
 
 **Objective**
-Understand and write modules.
+Understand and create Modules.
+
+**Task**
+The customer has informed you that he will be deploying several apps with the same architecture from Session 1, and also requested a few conditions.
+Build a module for the app(session 1) with the following conditions:
+
+# IF env is set to Dev
+App instance types must be t2.micro
+DB instance type must be t2.medium
+EBS root size must be 15GB
+EBS root type must be gp2
+EBS vol_1 size must be 10GB
+EBS vol_1 size must be gp2
+
+**Steps:**
+
+1. Clone this Repository to your local machine. 
+    a. git clone git@github.com:deensantos/tf-knowledge-share-apps.git
+2. Create the directory structure for the new module. 
+3. Determine the number of terraform files that this module will be broken into. Ex: App.Tf Ebs.Tf Alb.Tf.
+4. Deploy an application for Prod and another one for Dev using your module.
+
+
+
+
