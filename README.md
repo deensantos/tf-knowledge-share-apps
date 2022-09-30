@@ -1,28 +1,51 @@
 # Terraform Hands on Training
 
-**Session 1**
+| **Pre-Requisites:** 
+- An AWS lab setup and an account with admin access. Initial Infra TF Code - [Setup Infrastructure ](https://github.com/deensantos/tf-knowledge-share-infra)
 
-Objective: 
-Write the TF code and deploy the Application infrastructure requested by the 'client': https://docs.google.com/spreadsheets/d/1O0_jQfhlU4Ks4g2BzlTGUVUbD1a-67N4sqPr39nnt-Y/edit?usp=sharing
+------------
 
-Steps:
+
+### Session 1
+
+**Objective**
+Understand Terraform by writing the code for the various components of a real world application.
+
+**Task**
+Write the Terraform code and deploy the requested application infrastructure: [Application Infrastructure](https://docs.google.com/spreadsheets/d/1O0_jQfhlU4Ks4g2BzlTGUVUbD1a-67N4sqPr39nnt-Y/edit?usp=sharing "Application") 
+
+**Steps:**
+
+1. Clone this Repository to your local machine. 
+    a. git clone git@github.com:deensantos/tf-knowledge-share-apps.git
+2. Create the directory structure for the new application. Determine the number of folders to create. Ex: Prod, Dev, Test, App, DB and etc.
+3. Determine the number of terraform files that this application will be broken into. Ex: App.Tf Ebs.Tf Alb.Tf.
+4. Write And Deploy The Application.
+
+------------
+
+
+### Session 2
+
+**Objective**
+Understand and correct drifts.
+
+**Task**
+Correct all drifts before updating the application resource.
+
+**Steps:**
 
 1. Clone this repo to your local machine
-2. Create the directory structure for the new application
-   - Decide how many folders to create. Ex: Prod, Dev, Test
-   - Decide how many files to break the TF files into. Ex: App.tf Ebs.tf Alb.tf
-3. Determine what resources should be written first. That must be decided based on their dependencies. For example, an instance cannot be created without a network interface value, therefore to have a better work flow write the network interface first.
-4. To reduce debugging time, after writing data blocks, test the resources data are succesfully pulled out by using output blocks.
-
-**Session 2**
-
-Objective: 
-Understand Drifts and correct them.
-
-1. Clone the repo to your local machine
-2. Deploy the APP000
-3. Copy all deployment outputs to the top of the drifts.zsh file
+2. Navigate to APP000/Prod and deploy the application
+3. Copy the deployment outputs to the top of the drifts.zsh file
 4. run the script drifts.zsh
-5. Try increasing the non root volume of the database instance by 10GB
-6. Review and fix all drifts, so the change on step 5 can be succesfully executed
+5. Try increasing the non root volume of the database instance by 10GB by modyfing the terraform code
+6. Review the terraform plan and fix all drifts, before applying your volume change.
 
+------------
+
+
+### Session 3
+
+**Objective**
+Understand and write modules.
