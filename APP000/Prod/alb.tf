@@ -1,4 +1,4 @@
-# ALB
+# ALB - this is a tests
 resource "aws_lb" "app_alb" {
   name               = "APP000-alb-prod"
   internal           = false
