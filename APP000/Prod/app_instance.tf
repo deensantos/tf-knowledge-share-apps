@@ -4,7 +4,7 @@ resource "aws_instance" "APP001LAP01" {
   instance_type     = "t2.medium"
   availability_zone = "us-east-1a"
   key_name          = "hands-on"
-  
+
   lifecycle {
     ignore_changes = [volume_tags]
   }
@@ -23,15 +23,15 @@ resource "aws_instance" "APP001LAP01" {
 
   volume_tags = merge(
     local.tags,
-    { 
-      Name = "APP001LAP01-root-vol" 
+    {
+      Name = "APP001LAP01-root-vol"
     }
   )
 
   tags = merge(
     local.tags,
-    { 
-      Name = "APP001LAP01" 
+    {
+      Name = "APP001LAP01"
     }
   )
 }
@@ -40,7 +40,7 @@ resource "aws_instance" "APP001LAP02" {
   ami               = "ami-026b57f3c383c2eec"
   instance_type     = "t2.medium"
   availability_zone = "us-east-1b"
-  key_name = "hands-on"
+  key_name          = "hands-on"
 
   lifecycle {
     ignore_changes = [volume_tags]
@@ -60,15 +60,15 @@ resource "aws_instance" "APP001LAP02" {
 
   volume_tags = merge(
     local.tags,
-    { 
-      Name = "APP001LAP02-root-vol" 
+    {
+      Name = "APP001LAP02-root-vol"
     }
   )
 
   tags = merge(
     local.tags,
-    { 
-      Name = "APP001LAP02" 
+    {
+      Name = "APP001LAP02"
     }
   )
 

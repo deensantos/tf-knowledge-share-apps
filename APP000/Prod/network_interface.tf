@@ -7,7 +7,7 @@ resource "aws_network_interface" "app_network_interface" {
     aws_security_group.app_sg.id
   ]
 
-tags = merge(local.tags,{Name = "app000-nic01"})
+  tags = merge(local.tags, { Name = "app000-nic01" })
 }
 
 # APP001LAP02
@@ -19,7 +19,7 @@ resource "aws_network_interface" "app_network_interface_02" {
     aws_security_group.app_sg.id
   ]
 
-tags = merge(local.tags,{Name = "app000-nic02"})
+  tags = merge(local.tags, { Name = "app000-nic02" })
 }
 
 # APP001WDP01
@@ -31,5 +31,5 @@ resource "aws_network_interface" "db_network_interface" {
     aws_security_group.db_sg.id
   ]
 
-tags = merge(local.tags,{Name = "app000-nic03"})
+  tags = merge(local.tags, { Name = "app000-nic03" })
 }

@@ -8,7 +8,7 @@ resource "aws_instance" "APP001WDP01" {
   lifecycle {
     ignore_changes = [volume_tags]
   }
-  
+
   network_interface {
     network_interface_id = aws_network_interface.db_network_interface.id
     device_index         = 0
@@ -23,15 +23,15 @@ resource "aws_instance" "APP001WDP01" {
 
   volume_tags = merge(
     local.tags,
-    { 
-        Name = "APP001WDP01-vol" 
+    {
+      Name = "APP001WDP01-vol"
     }
   )
 
   tags = merge(
     local.tags,
-    { 
-        Name = "APP001WDP01" 
+    {
+      Name = "APP001WDP01"
     }
   )
 }

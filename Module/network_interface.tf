@@ -8,9 +8,9 @@ resource "aws_network_interface" "app_network_interface" {
     aws_security_group.app_sg.id
   ]
 
-tags = merge(
-  local.tags,
-  {Name = "${var.app_id}-eni-01"}
+  tags = merge(
+    local.tags,
+    { Name = "${var.app_id}-eni-01" }
   )
 }
 
@@ -22,9 +22,9 @@ resource "aws_network_interface" "app_network_interface_02" {
     aws_security_group.app_sg.id
   ]
 
-tags = merge(
-  local.tags,
-  {Name = "${var.app_id}-eni-02"}
+  tags = merge(
+    local.tags,
+    { Name = "${var.app_id}-eni-02" }
   )
 }
 
@@ -36,7 +36,7 @@ resource "aws_network_interface" "db_network_interface" {
     aws_security_group.db_sg.id
   ]
 
-tags = merge(
-  local.tags,{Name = "${var.app_id}-eni-03"}
+  tags = merge(
+    local.tags, { Name = "${var.app_id}-eni-03" }
   )
 }

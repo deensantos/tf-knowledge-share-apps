@@ -19,7 +19,7 @@ resource "aws_security_group" "alb_sg" {
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
-  tags = merge(local.tags,{Name = "sg-app000-prod-use1-alb"})
+  tags = merge(local.tags, { Name = "sg-app000-prod-use1-alb" })
 }
 
 # APP SG
@@ -43,7 +43,7 @@ resource "aws_security_group" "app_sg" {
     protocol        = "tcp"
     security_groups = [aws_security_group.alb_sg.id]
   }
-  tags = merge(local.tags,{Name = "sg-app000-prod-use1-app"})
+  tags = merge(local.tags, { Name = "sg-app000-prod-use1-app" })
 }
 
 # DB SG
@@ -54,12 +54,12 @@ resource "aws_security_group" "db_sg" {
 
   #Ingress
   ingress {
-    description = "HTTP"
-    from_port   = 1433
-    to_port     = 1433
-    protocol    = "tcp"
+    description     = "HTTP"
+    from_port       = 1433
+    to_port         = 1433
+    protocol        = "tcp"
     security_groups = [aws_security_group.app_sg.id]
   }
- tags = merge(local.tags,{Name = "sg-app000-prod-use1-db"})
+  tags = merge(local.tags, { Name = "sg-app000-prod-use1-db" })
 }
 

@@ -4,12 +4,12 @@ resource "aws_lb" "app_alb" {
   internal           = false
   load_balancer_type = "application"
   security_groups    = [aws_security_group.alb_sg.id]
-  subnets            = [data.aws_subnet.public_subnet_a.id, data.aws_subnet.public_subnet_b.id] 
-  
+  subnets            = [data.aws_subnet.public_subnet_a.id, data.aws_subnet.public_subnet_b.id]
+
   tags = merge(
     local.tags,
-    {Name = "${var.app_id}-alb-${lower(var.environment)}"}
-    )
+    { Name = "${var.app_id}-alb-${lower(var.environment)}" }
+  )
 }
 
 # Listener 

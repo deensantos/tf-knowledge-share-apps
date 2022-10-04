@@ -21,7 +21,7 @@ resource "aws_security_group" "alb_sg" {
   }
   tags = merge(
     local.tags,
-    {Name = "sg-${var.app_id}-${lower(var.environment)}-use1-alb"}
+    { Name = "sg-${var.app_id}-${lower(var.environment)}-use1-alb" }
   )
 }
 
@@ -48,7 +48,7 @@ resource "aws_security_group" "app_sg" {
   }
   tags = merge(
     local.tags,
-    {Name = "sg-${var.app_id}-${lower(var.environment)}-use1-app"}
+    { Name = "sg-${var.app_id}-${lower(var.environment)}-use1-app" }
   )
 }
 
@@ -60,15 +60,15 @@ resource "aws_security_group" "db_sg" {
 
   #Ingress
   ingress {
-    description = "HTTP"
-    from_port   = 1433
-    to_port     = 1433
-    protocol    = "tcp"
+    description     = "HTTP"
+    from_port       = 1433
+    to_port         = 1433
+    protocol        = "tcp"
     security_groups = [aws_security_group.app_sg.id]
   }
   tags = merge(
     local.tags,
-    {Name = "sg-${var.app_id}-${lower(var.environment)}-use1-db"}
+    { Name = "sg-${var.app_id}-${lower(var.environment)}-use1-db" }
   )
 }
 

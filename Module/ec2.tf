@@ -16,21 +16,21 @@ resource "aws_instance" "app_instance" {
     network_interface_id = aws_network_interface.app_network_interface.id
     device_index         = 0
   }
-  
+
   lifecycle {
     ignore_changes = [volume_tags]
   }
 
   volume_tags = merge(
     local.tags,
-    { 
-      Name = "${var.app_id}-LAP01-root-vol" 
+    {
+      Name = "${var.app_id}-LAP01-root-vol"
     }
   )
   tags = merge(
     local.tags,
-    { 
-      Name = "${var.app_id}-LAP01" 
+    {
+      Name = "${var.app_id}-LAP01"
     }
   )
 }
@@ -53,21 +53,21 @@ resource "aws_instance" "app_instance_2" {
     network_interface_id = aws_network_interface.app_network_interface_02.id
     device_index         = 0
   }
-  
+
   lifecycle {
     ignore_changes = [volume_tags]
   }
 
   volume_tags = merge(
     local.tags,
-    { 
-      Name = "${var.app_id}-LAP02-root-vol" 
+    {
+      Name = "${var.app_id}-LAP02-root-vol"
     }
   )
   tags = merge(
     local.tags,
-    { 
-      Name = "${var.app_id}-LAP02" 
+    {
+      Name = "${var.app_id}-LAP02"
     }
   )
 }
@@ -90,21 +90,21 @@ resource "aws_instance" "db_instance" {
     network_interface_id = aws_network_interface.db_network_interface.id
     device_index         = 0
   }
-  
+
   lifecycle {
     ignore_changes = [volume_tags]
   }
 
   volume_tags = merge(
     local.tags,
-    { 
-      Name = "${var.app_id}-WDP01-root-vol" 
+    {
+      Name = "${var.app_id}-WDP01-root-vol"
     }
   )
   tags = merge(
     local.tags,
-    { 
-      Name = "${var.app_id}-WDP01" 
+    {
+      Name = "${var.app_id}-WDP01"
     }
   )
 }

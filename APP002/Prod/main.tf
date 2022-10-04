@@ -1,15 +1,15 @@
 data "aws_vpc" "mainVPC" {
-    filter {
+  filter {
     name   = "tag:Name"
     values = ["vpc-prod-use1"]
   }
 
-  
+
 }
 
 data "aws_subnet" "subnet_app_A" {
   filter {
-    name = "tag:Name"
+    name   = "tag:Name"
     values = ["snet-prod-use1-application-a"]
   }
 }
@@ -19,6 +19,6 @@ data "aws_kms_key" "customerKey" {
 }
 
 output "vpc_id" {
-    value = data.aws_vpc.mainVPC.id
-  
+  value = data.aws_vpc.mainVPC.id
+
 }
