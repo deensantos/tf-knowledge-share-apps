@@ -17,9 +17,15 @@ resource "aws_lb_target_group" "app_lb_tg" {
   vpc_id   = data.aws_vpc.main_vpc.id
 }
 
-resource "aws_lb_target_group_attachment" "app_lb_tg_attachment" {
+resource "aws_lb_target_group_attachment" "app_lb_tg_attachment_1" {
   target_group_arn = aws_lb_target_group.app_lb_tg.arn
-  target_id        = aws_instance.app_instance.id
+  target_id        = aws_instance.app_instance_1.id
+  port             = 80
+}
+
+resource "aws_lb_target_group_attachment" "app_lb_tg_attachment_2" {
+  target_group_arn = aws_lb_target_group.app_lb_tg.arn
+  target_id        = aws_instance.app_instance_2.id
   port             = 80
 }
 
