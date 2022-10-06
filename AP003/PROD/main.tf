@@ -15,3 +15,15 @@ data "aws_vpc" "main_vpc" {
 output "vpc_outputs" {
   value = data.aws_vpc.main_vpc.id
 }
+
+data "aws_kms_key" "customer_key" {
+  key_id = "713104d4-357c-4ced-8b21-741029ab1173"
+}
+
+
+data "aws_subnet" "application_subnet" {
+  filter {
+    name = "tag:Name"
+    values = ["snet-prod-use1-application-a"]
+  }
+}
