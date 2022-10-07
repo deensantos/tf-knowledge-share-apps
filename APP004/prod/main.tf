@@ -57,3 +57,10 @@ locals {
 
   }
 }
+
+data "aws_subnet" "public_a_subnet" {
+  filter {
+    name   = "tag:Name"
+    values = ["snet-prod-use1-public-a"]
+  }
+}

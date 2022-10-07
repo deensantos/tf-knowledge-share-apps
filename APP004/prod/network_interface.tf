@@ -4,6 +4,12 @@ resource "aws_network_interface" "instance_nic_app_a" {
   security_groups = [aws_security_group.app_sg.id]
 }
 
+# resource "aws_network_interface" "instance_nic_app_a" {
+#   subnet_id       = data.aws_subnet.public_a_subnet.id
+#   private_ips     = ["10.0.5.100"]
+#   security_groups = [aws_security_group.app_sg.id]
+# }
+
 resource "aws_network_interface" "instance_nic_app_b" {
   subnet_id       = data.aws_subnet.application_b_subnet.id
   private_ips     = ["10.0.2.100"]
