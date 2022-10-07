@@ -27,3 +27,24 @@ data "aws_subnet" "application_subnet" {
     values = ["snet-prod-use1-application-a"]
   }
 }
+
+data "aws_subnet" "database_subnet" {
+  filter {
+    name = "tag:Name"
+    values = ["snet-prod-use1-data-a"]
+  }
+}
+
+data "aws_subnet" "public_subnet_a" {
+  filter {
+    name = "tag:Name"
+    values = ["snet-prod-use1-public-a"]
+  }
+}
+
+data "aws_subnet" "public_subnet_b" {
+  filter {
+    name = "tag:Name"
+    values = ["snet-prod-use1-public-b"]
+  }
+}
