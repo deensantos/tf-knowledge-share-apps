@@ -23,10 +23,36 @@ data "aws_subnet" "application_b_subnet" {
   }
 }
 
+data "aws_subnet" "db_subnet" {
+  filter {
+    name   = "tag:Name"
+    values = ["snet-prod-use1-data-a"]
+  }
+}
+
+data "aws_key_pair" "ec2_keypair" {
+  key_name           = "hands-on"
+  include_public_key = true
+}
+
+data "aws_subnet" "alb_subnet_a" {
+  filter {
+    name   = "tag:Name"
+    values = ["snet-prod-use1-public-a"]
+  }
+}
+
+data "aws_subnet" "alb_subnet_b" {
+  filter {
+    name   = "tag:Name"
+    values = ["snet-prod-use1-public-b"]
+  }
+}
+
 locals {
   common_tags = {
-    app_id = "APP004",
-    department = "IT",
+    app_id      = "APP004",
+    department  = "IT",
     environment = "Prod"
 
   }
