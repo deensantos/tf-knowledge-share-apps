@@ -1,7 +1,20 @@
+locals {
+  common_tags = {
+    app_id      = uppper(var.app_id),
+    department  = "IT",
+    environment = lower(var.env)
+
+  }
+                                        #us                       #e                            #1            
+  region = lower(format("%s%s%s", substr(var.aws_region, 0, 2), substr(var.aws_region, 3, 1), substr(var.aws_region, -1, 1)))
+
+}
+
+
 data "aws_vpc" "vpc" {
   filter {
     name   = "tag:Name"
-    values = ["vpc-prod-use1"]
+    values = [lower("vpc-${var.env}-${local.region}")]
   }
 }
 
@@ -12,21 +25,14 @@ data "aws_kms_key" "customer_key" {
 data "aws_subnet" "application_a_subnet" {
   filter {
     name   = "tag:Name"
-    values = ["snet-prod-use1-application-a"]
-  }
-}
-
-data "aws_subnet" "application_b_subnet" {
-  filter {
-    name   = "tag:Name"
-    values = ["snet-prod-use1-application-b"]
+    values = [lower("snet-${var.env}-${local.region}-application-${var.az[0]}")]
   }
 }
 
 data "aws_subnet" "db_subnet" {
   filter {
     name   = "tag:Name"
-    values = ["snet-prod-use1-data-a"]
+    values = [lower("snet-${var.env}-${local.region}-data-${var.az[0]}")]
   }
 }
 
@@ -38,23 +44,14 @@ data "aws_key_pair" "ec2_keypair" {
 data "aws_subnet" "alb_subnet_a" {
   filter {
     name   = "tag:Name"
-    values = ["snet-prod-use1-public-a"]
+    values = [lower("snet-${var.env}-${local.region}-public-${var.az_alb[0]}")]
   }
 }
 
 data "aws_subnet" "alb_subnet_b" {
   filter {
     name   = "tag:Name"
-    values = ["snet-prod-use1-public-b"]
-  }
-}
-
-locals {
-  common_tags = {
-    app_id      = "APP004",
-    department  = "IT",
-    environment = "Prod"
-
+    values = [lower("snet-${var.env}-${local.region}-public-${var.az_alb[1]}")]
   }
 }
 

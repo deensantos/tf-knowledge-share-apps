@@ -1,5 +1,5 @@
 resource "aws_security_group" "app_sg" {
-  name        = "app004-prod-use1-app"
+  name        = lower("${var.app_id}-${var.env}-${local.region}-app")
   description = "App Instance traffic"
   vpc_id      = data.aws_vpc.vpc.id
 
@@ -41,7 +41,7 @@ resource "aws_security_group" "app_sg" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["10.2.100.90/32"]
+    cidr_blocks = var.jump_server_ip
   }
 
   egress {
@@ -65,11 +65,11 @@ resource "aws_security_group" "app_sg" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-  tags = merge({ Name = "app004-prod-use1-app" }, local.common_tags)
+  tags = merge({ Name = lower("${var.app_id}-${var.env}-${local.region}-app")}, local.common_tags)
 }
 
 resource "aws_security_group" "alb_sg" {
-  name        = "app004-prod-use1-alb"
+  name        =  lower("${var.app_id}-${var.env}-${local.region}-alb")  
   description = "Traffic to ALB"
   vpc_id      = data.aws_vpc.vpc.id
 
@@ -103,11 +103,11 @@ resource "aws_security_group" "alb_sg" {
     cidr_blocks = ["10.0.0.0/16"]
   }
 
-  tags = merge({ Name = "app004-prod-use1-alb" }, local.common_tags)
+  tags = merge({ Name = lower("${var.app_id}-${var.env}-${local.region}-alb") }, local.common_tags)
 }
 
 resource "aws_security_group" "database_sg" {
-  name        = "app004-prod-use1-db"
+  name        =  lower("${var.app_id}-${var.env}-${local.region}-db")  
   description = "traffic to database"
   vpc_id      = data.aws_vpc.vpc.id
 
@@ -119,7 +119,7 @@ resource "aws_security_group" "database_sg" {
     security_groups = [aws_security_group.app_sg.id]
   }
 
-  tags = merge({ Name = "app004-prod-use1-db" }, local.common_tags)
+  tags = merge({ Name = lower("${var.app_id}-${var.env}-${local.region}-db")}, local.common_tags)
 }
 
 # resource "aws_security_group_rule" "alb_egress_rule" {
