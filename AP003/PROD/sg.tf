@@ -1,5 +1,5 @@
 resource "aws_security_group" "db_sg" {
-  name        = "app003-prod-use1-db"
+  name        = "${var.app_id}-${var.environment}-${local.region}-db"
   description = "Allow DB traffic"
   vpc_id      = data.aws_vpc.main_vpc.id
 
@@ -12,12 +12,12 @@ resource "aws_security_group" "db_sg" {
   }
 
   tags = merge(local.tags, {
-    Name = "app003-prod-use1-db"
+    Name = "${var.app_id}-${var.environment}-${local.region}-db"
   })
 }
 
 resource "aws_security_group" "app_sg" {
-  name        = "app003-prod-use1-app"
+  name        = "${var.app_id}-${var.environment}-${local.region}-app"
   description = "Allow APP traffic"
   vpc_id      = data.aws_vpc.main_vpc.id
 
@@ -30,13 +30,13 @@ resource "aws_security_group" "app_sg" {
   }
 
   tags = merge(local.tags, {
-    Name = "app003-prod-use1-app"
+    Name = "${var.app_id}-${var.environment}-${local.region}-app"
   })
 }
 
 
 resource "aws_security_group" "alb_sg" {
-  name        = "app003-prod-use1-alb"
+  name        = "${var.app_id}-${var.environment}-${local.region}-alb"
   description = "Allow ALB traffic"
   vpc_id      = data.aws_vpc.main_vpc.id
 
@@ -49,6 +49,6 @@ resource "aws_security_group" "alb_sg" {
   }
 
   tags = merge(local.tags, {
-    Name = "app003-prod-use1-alb"
+    Name = "${var.app_id}-${var.environment}-${local.region}-alb"
   })
 }

@@ -1,21 +1,21 @@
 resource "aws_instance" "app003-instance1" {
   ami           = "ami-026b57f3c383c2eec"
-  instance_type = "t2.large"
-
+  instance_type = var.instance_type == null? var.environment == "prod"? "t2.large":"t2.medium": var.instance_type
 
   root_block_device {
     volume_size = 50
-    volume_type = "gp3"
+    volume_type = var.volume_type == null? var.environment == "prod"? "gp3":"gp2": var.volume_type
     encrypted   = true
     kms_key_id  = data.aws_kms_key.customer_key.arn
   }
+  
 
   network_interface {
     network_interface_id = aws_network_interface.app_instance_eni.id
     device_index         = 0
   }
   tags = merge(local.tags, {
-    Name = "APP003-LAP01"
+    Name = "${var.app_id}-LAP01"
   })
 }
 
@@ -51,9 +51,9 @@ resource "aws_instance" "APP003-WDP01" {
     device_index         = 0
   }
   tags = {
-    Name = "APP003-WDP01",
+    Name = "${var.app_id}-WDP01",
     DBA = "Support",
     Department = "IT",
-    APPID = "APP003"
+    APPID = "${var.app_id}"
   }
 }

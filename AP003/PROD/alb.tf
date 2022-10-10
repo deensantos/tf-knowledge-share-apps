@@ -1,18 +1,18 @@
 resource "aws_lb" "app003-alb-prod" {
-  name               = "app003-alb-prod"
+  name               = "${var.app_id}-alb-${var.environment}"
   internal           = false
   load_balancer_type = "application"
   security_groups    = [aws_security_group.alb_sg.id]
   subnets            = [data.aws_subnet.public_subnet_a.id, data.aws_subnet.public_subnet_b.id]
 
   tags = {
-    Environment = "production",
+    Environment = var.environment,
     Alb = "Public"
   }
 }
 
 resource "aws_lb_target_group" "app003_target_group" {
-  name     = "app003-target-group"
+  name     = "${var.app_id}-target-group"
   port     = 443
   protocol = "HTTPS"
   vpc_id   = data.aws_vpc.main_vpc.id
