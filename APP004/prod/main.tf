@@ -40,7 +40,7 @@ data "aws_subnet" "application_b_subnet" {
 data "aws_subnet" "db_subnet" {
   filter {
     name   = "tag:Name"
-    values = [lower("snet-${var.env}-${local.region}-data-${var.az[0]}")]
+    values = [lower("snet-${var.env}-${local.region}-data-${var.az[2]}")]
   }
 }
 
