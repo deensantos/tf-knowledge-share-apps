@@ -36,6 +36,14 @@ resource "aws_security_group" "app_sg" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
+  ingress {
+    description = "Jump Server Access"
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["10.2.100.90/32"]
+  }
+
   egress {
     from_port   = 0
     to_port     = 0
@@ -43,10 +51,16 @@ resource "aws_security_group" "app_sg" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-  ##############################################
   egress {
     from_port   = 1443
     to_port     = 1443
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 65535
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
@@ -79,8 +93,14 @@ resource "aws_security_group" "alb_sg" {
     from_port = 80
     to_port   = 80
     protocol  = "tcp"
-    # security_groups = [aws_security_group.app_sg.id]
     cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  egress {
+    from_port = 80
+    to_port   = 80
+    protocol  = "tcp"
+    cidr_blocks = ["10.0.0.0/16"]
   }
 
   tags = merge({ Name = "app004-prod-use1-alb" }, local.common_tags)

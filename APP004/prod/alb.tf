@@ -2,10 +2,10 @@ resource "aws_lb" "alb_prod" {
   name               = "app004-alb-prod"
   internal           = false
   load_balancer_type = "application"
-  security_groups    = [aws_security_group.alb_sg.id]
+  security_groups    = [aws_security_group.alb_sg.id, "sg-02e56ad735c415467"]
   subnets            = [data.aws_subnet.alb_subnet_a.id, data.aws_subnet.alb_subnet_b.id]
 
-  tags = local.common_tags
+  tags = merge({ ALB = "Test"}, { Support = "Public"}, local.common_tags)
 }
 
 
