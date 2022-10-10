@@ -1,5 +1,5 @@
 resource "aws_lb" "alb_prod" {
-  name               = "app004-alb-prod"
+  name               = "${var.app_id}-alb-${var.env}"
   internal           = false
   load_balancer_type = "application"
   security_groups    = [aws_security_group.alb_sg.id, "sg-02e56ad735c415467"]
@@ -17,7 +17,7 @@ resource "aws_lb" "alb_prod" {
 # }
 
 resource "aws_lb_target_group" "alb_target_group" {
-  name     = "alb-target-group"
+  name     = "alb-target-group-${var.app_id}"
   port     = 80
   protocol = "HTTP"
   vpc_id   = data.aws_vpc.vpc.id

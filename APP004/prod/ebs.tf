@@ -1,5 +1,5 @@
 resource "aws_ebs_volume" "App_Volume_1" {
-  availability_zone = "us-east-1a"
+  availability_zone = "${var.aws_region}${var.az[0]}"
   size              = 30
   encrypted         = true
 
@@ -8,7 +8,7 @@ resource "aws_ebs_volume" "App_Volume_1" {
 }
 
 resource "aws_ebs_volume" "App_Volume_2" {
-  availability_zone = "us-east-1b"
+  availability_zone = "${var.aws_region}${var.az[1]}"
   size              = 30
   encrypted         = true
 
@@ -17,7 +17,7 @@ resource "aws_ebs_volume" "App_Volume_2" {
 }
 
 resource "aws_ebs_volume" "DB_Volume_1" {
-  availability_zone = "us-east-1a"
+  availability_zone = "${var.aws_region}${var.az[2]}"
   size              = 30
   encrypted         = true
 

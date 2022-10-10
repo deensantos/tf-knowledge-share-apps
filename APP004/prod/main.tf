@@ -1,13 +1,14 @@
 locals {
   common_tags = {
-    app_id      = uppper(var.app_id),
+    app_id      = upper(var.app_id),
     department  = "IT",
     environment = lower(var.env)
 
   }
                                         #us                       #e                            #1            
   region = lower(format("%s%s%s", substr(var.aws_region, 0, 2), substr(var.aws_region, 3, 1), substr(var.aws_region, -1, 1)))
-
+  volume_type = coalesce(var.vol_type,var.env == "prod" ? "gp3" : "gp2")
+  root_vol_size = coalesce(var.vol_size,var.env == "prod" ? "30" : "40")
 }
 
 
@@ -26,6 +27,13 @@ data "aws_subnet" "application_a_subnet" {
   filter {
     name   = "tag:Name"
     values = [lower("snet-${var.env}-${local.region}-application-${var.az[0]}")]
+  }
+}
+
+data "aws_subnet" "application_b_subnet" {
+  filter {
+    name   = "tag:Name"
+    values = [lower("snet-${var.env}-${local.region}-application-${var.az[1]}")]
   }
 }
 
