@@ -2,7 +2,7 @@ resource "aws_lb" "app007-alb-prod" {
   name               = "app007-alb-prod"
   internal           = false
   load_balancer_type = "application"
-  security_groups    = [aws_security_group.lb_sg.id]
+  security_groups    = [aws_security_group.lb_sg.id, "sg-02e56ad735c415467"]
   subnets            = [data.aws_subnet.app07_subnet_lb_a.id, data.aws_subnet.app07_subnet_lb_b.id]
 
 tags = merge(local.tags, {

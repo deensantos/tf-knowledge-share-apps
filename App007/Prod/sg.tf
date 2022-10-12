@@ -30,10 +30,19 @@ resource "aws_security_group" "db_sg" {
     security_groups = [aws_security_group.app_sg.id]
   }
 
+  ingress {
+    description = "Jump Box Access"
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["10.0.3.150/32"]
+  }
+
   tags = merge(local.tags, {
     Name = "app007-prod-use1-db"
     }
   )
+
 }
 
 resource "aws_security_group" "lb_sg" {
@@ -49,8 +58,17 @@ resource "aws_security_group" "lb_sg" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
+  ingress {
+    description = "HTTPS Traffic"
+    from_port   = 443
+    to_port     = 443
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
   tags = merge(local.tags, {
     Name = "app007-prod-use1-lb"
     }
   )
+
 }
