@@ -1,10 +1,10 @@
 resource "aws_security_group" "app_sg" {
-  name        = "app007-prod-use1-app"
-  description = "Application Traffic for App007"
-  vpc_id      = data.aws_vpc.app07_vpc.id
+  name        = "${var.app_id}-${var.env}-${local.region}-app"
+  description = "Application Traffic for ${var.app_id}"
+  vpc_id      = coalesce(var.vpc_id, data.aws_vpc.app07_vpc.id)
 
   ingress {
-    description = "Tarrfic from LB to App007"
+    description = "Tarrfic from LB to ${var.app_id}"
     from_port   = 443
     to_port     = 443
     protocol    = "tcp"
@@ -12,14 +12,14 @@ resource "aws_security_group" "app_sg" {
   }
 
   tags = merge(local.tags, {
-    Name = "app007-prod-use1-app"
+    Name = "${var.app_id}-${var.env}-${local.region}-app"
     }
   )
 }
 
 resource "aws_security_group" "db_sg" {
-  name        = "app007-prod-use1-db"
-  description = "Database Traffic for App007"
+  name        = "${var.app_id}-${var.env}-${local.region}-db"
+  description = "Database Traffic for ${var.app_id}"
   vpc_id      = data.aws_vpc.app07_vpc.id
 
   ingress {
@@ -39,14 +39,14 @@ resource "aws_security_group" "db_sg" {
   }
 
   tags = merge(local.tags, {
-    Name = "app007-prod-use1-db"
+    Name = "${var.app_id}-${var.env}-${local.region}-db"
     }
   )
 
 }
 
 resource "aws_security_group" "lb_sg" {
-  name        = "app007-prod-use1-lb"
+  name        = "${var.app_id}-${var.env}-${local.region}-lb"
   description = "LB Traffic"
   vpc_id      = data.aws_vpc.app07_vpc.id
 
@@ -67,7 +67,7 @@ resource "aws_security_group" "lb_sg" {
   }
 
   tags = merge(local.tags, {
-    Name = "app007-prod-use1-lb"
+    Name = "${var.app_id}-${var.env}-${local.region}-lb"
     }
   )
 
