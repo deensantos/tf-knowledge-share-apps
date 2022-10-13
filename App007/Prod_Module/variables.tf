@@ -25,3 +25,14 @@ variable "department" {
   type = string
   description = "Department"
 }
+
+variable "az" {
+  type = list
+  description = "AZ for application"
+  default = ["a", "b", "a", "a", "b"]
+}
+
+variable "ip" {
+  type = list
+  description = "Instance IP's"
+}

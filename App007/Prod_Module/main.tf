@@ -19,46 +19,38 @@ data "aws_kms_key" "Default_key" {
   key_id = "713104d4-357c-4ced-8b21-741029ab1173"
 }
 
-data "aws_subnet" "app07_subnet_a" {
+data "aws_subnet" "app_subnet_1" {
   filter {
     name   = "tag:Name"
-    values = ["snet-${var.env}-${local.region}-application-a"]
+    values = ["snet-${var.env}-${local.region}-application-${var.az[0]}"]
   }
 }
 
-data "aws_subnet" "app07_subnet_b" {
+data "aws_subnet" "app_subnet_2" {
   filter {
     name   = "tag:Name"
-    values = ["snet-${var.env}-${local.region}-application-b"]
+    values = ["snet-${var.env}-${local.region}-application-${var.az[1]}"]
   }
 }
 
-data "aws_subnet" "app07_subnet_db_a" {
+data "aws_subnet" "db_subnet_1" {
   filter {
     name   = "tag:Name"
-    values = ["snet-${var.env}-${local.region}-data-a"]
+    values = ["snet-${var.env}-${local.region}-data-${var.az[2]}"]
   }
 }
 
-data "aws_subnet" "app07_subnet_db_b" {
+data "aws_subnet" "lb_subnet_1" {
   filter {
     name   = "tag:Name"
-    values = ["snet-${var.env}-${local.region}-data-b"]
+    values = ["snet-${var.env}-${local.region}-public-${var.az[3]}"]
   }
 }
 
-data "aws_subnet" "app07_subnet_lb_a" {
+data "aws_subnet" "lb_subnet_2" {
   filter {
     name   = "tag:Name"
-    values = ["snet-${var.env}-${local.region}-public-a"]
+    values = ["snet-${var.env}-${local.region}-public-${var.az[4]}"]
   }
 }
-
-data "aws_subnet" "app07_subnet_lb_b" {
-  filter {
-    name   = "tag:Name"
-    values = ["snet-${var.env}-${local.region}-public-b"]
-  }
-}
-
 
